@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title ng-bind="pageTitle"></title>
+    <link href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Titillium+Web:700|Source+Serif+Pro:400,700|Merriweather+Sans:400,700|Source+Sans+Pro:400,300,600,700,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//demo.productionready.io/main.css">
+    <script src="./bower_components/ukulelejs/dist/uku.js"></script>
+    <script src="./bower_components/routejs/build/js/uku-route.js"></script>
+  </head>
+  <body uku-application>
+    <my-navigator></my-navigator>
+    <div id="viewContainer"></div>
+    <my-footer></my-footer>
+  </body>
+  <script>
+    var uku = new Ukulele();
+    uku.registerComponent('my-footer','./components/footer.html');
+    uku.registerComponent('my-navigator', './components/navigator.html');
+    uku.init();
+
+    var route = new RouteController('viewContainer')
+      .default('#/', './pages/home.html')
+      .when('#/login', './pages/login.html')
+      .when('#/register', './pages/login.html')
+      .when('#/settings', './pages/settings.html')
+      .when('#/editor', './pages/edit_article.html')
+      .when('#/editor/*', './pages/edit_article.html')
+      .when('#/article/*', './pages/article.html')
+      .when('#/profile/:username', './pages/profile.html')
+      .when('#/profile/:username/favorites', './pages/profile.html')
+      .otherwise("pages/404.html")
+      .work();
+  </script>
+</html>
