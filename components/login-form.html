@@ -1,0 +1,39 @@
+<uku-component>
+    <template>
+        <div class="row">
+            <div class="col-md-6 offset-md-3 col-xs-12">
+                <h1 class="text-xs-center">Sign in</h1>
+                <p class="text-xs-center">
+                    <a href="">Need an account?</a>
+                </p>
+
+                <ul class="error-messages" uku-render="cc.invalid">
+                    <li>Email or password is invalid</li>
+                </ul>
+
+                <form>
+                    <fieldset class="form-group">
+                        <input class="form-control form-control-lg" type="text" placeholder="Email" uku-value="cc.email">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <input class="form-control form-control-lg" type="password" placeholder="Password" uku-value="cc.password">
+                    </fieldset>
+                    <button type="button" class="btn btn-lg btn-primary pull-xs-right" uku-onclick="cc.login()">
+                        Sign in
+                    </button>
+                </form>
+            </div>
+        </div>
+    </template>
+    <script>
+        var api = ConduitAPIs;
+        this.email = '';
+        this.password = '';
+        this.login = function(){
+            api.authAPI.login({'email':this.email, 'password':this.password})
+                .then(function(result){
+                    console.log(result);
+                })
+        };
+    </script>
+</uku-component>

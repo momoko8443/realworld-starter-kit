@@ -1,0 +1,53 @@
+<uku-component>
+    <template>
+        <div class="home-page">
+            <div class="banner">
+                <div class="container">
+                    <h1 class="logo-font">conduit</h1>
+                    <p>A place to share your knowledge.</p>
+                </div>
+            </div>
+
+            <div class="container page">
+                <div class="row">
+
+                    <div class="col-md-9">
+                        <div class="feed-toggle">
+                            <ul class="nav nav-pills outline-active">
+                                <li class="nav-item">
+                                    <a class="nav-link disabled" href="">Your Feed</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="">Global Feed</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <article-item uku-repeat="article in cc.articles" uku-article-item="article"></article-item>
+                    </div>
+
+                    <div class="col-md-3">
+                        <tags-view uku-tags="cc.tags"></tags-view>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <script>
+        var api = ConduitAPIs;
+        var self = this;
+        this.article = [];
+        this.tags = [];
+        
+        this._initialized = function(){
+            api.articlesAPI.query('',{limit:10,offset:0}).then(function(result){
+                self.articles = result.data.articles;
+                uku.refresh();
+            });
+
+            api.tagsAPI.query().then(function(result){
+                self.tags = result.data.tags;
+                uku.refresh();
+            })
+        };
+    </script>
+</uku-component>

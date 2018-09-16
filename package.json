@@ -1,0 +1,31 @@
+{
+  "name": "realworld-starter-kit",
+  "version": "1.0.0",
+  "description": "> ### [YOUR_FRAMEWORK] codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.",
+  "main": "entry.js",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "uku-routejs": "^1.0.0",
+    "ukulelejs": "^1.4.1"
+  },
+  "devDependencies": {
+    "source-map-loader": "^0.2.4",
+    "webpack": "^4.19.0",
+    "webpack-cli": "^3.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/momoko8443/realworld-starter-kit.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/momoko8443/realworld-starter-kit/issues"
+  },
+  "homepage": "https://github.com/momoko8443/realworld-starter-kit#readme"
+}

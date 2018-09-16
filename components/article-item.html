@@ -1,0 +1,33 @@
+<uku-component>
+    <template>
+        <div class="article-preview">
+            <div class="article-meta">
+                <a href="profile.html"><img uku-src="cc.article.author.image" /></a>
+                <div class="info">
+                    <a href="#/profile/u123" class="author" uku-text="cc.article.author.username"></a>
+                    <span class="date" uku-text="cc.article.createdAt"></span>
+                </div>
+                <button class="btn btn-outline-primary btn-sm pull-xs-right">
+                    <i class="ion-heart"></i> <span uku-text="cc.article.favoritesCount"></span>
+                </button>
+            </div>
+            <a uku-href="cc.getArtileDetailHref()" class="preview-link">
+                <h1 uku-text="cc.article.title"></h1>
+                <p uku-text="cc.article.body"></p>
+                <span>Read more...</span>
+            </a>
+        </div>
+    </template>
+    <script>
+        this.getArtileDetailHref = function(){
+            return '#/article/'+this.article.slug;
+        }
+        Object.defineProperty(this,'articleItem',{
+            set: function(value){
+                if(value){
+                    this.article = value;
+                }
+            }
+        })
+    </script>
+</uku-component>
