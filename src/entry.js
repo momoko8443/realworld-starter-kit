@@ -14,20 +14,52 @@ uku.init();
 
 uku.addListener(Ukulelejs.INITIALIZED, (e)=> {
     route.work();
-    route.onRouteChange = function(page){
-        uku.handleElement(page.page);
-    }
-})
+    // route.onRouteChange = function(page){
+    //     uku.handleElement(page.page);
+    // }
+});
+
+uku.addListener(Ukulelejs.HANDLE_ELEMENT_COMPLETED, (e)=> {
+    console.log(e);
+});
 
 var route = new UkuRouter.UkuRouter('viewContainer')
-    .default('#/', './pages/home.html')
-    .when('#/login', './pages/login.html')
-    .when('#/register', './pages/register.html')
-    .when('#/settings', './pages/settings.html')
-    .when('#/editor', './pages/edit_article.html')
-    .when('#/editor/:articleId', './pages/edit_article.html')
-    .when('#/article/:articleId', './pages/view_article.html')
-    .when('#/profile/:username', './pages/profile.html')
-    .when('#/profile/:username/favorites', './pages/profile.html')
-    .otherwise("pages/404.html")
-    //.work();
+    .default('#/', './pages/home.html', routeHomeHandler)
+    .when('#/login', './pages/login.html', routeLoginHandler)
+    .when('#/register', './pages/register.html', routeRegisterHandler)
+    .when('#/settings', './pages/settings.html', routeSettingsHandler)
+    .when('#/editor', './pages/edit_article.html', routeCreateArticleHandler)
+    .when('#/editor/:articleId', './pages/edit_article.html', routeEditArticleHandler)
+    .when('#/article/:articleId', './pages/view_article.html', reouteViewArticleHandler)
+    .when('#/profile/:username', './pages/profile.html' , routeUserProfileHandler)
+    .when('#/profile/:username/favorites', './pages/profile.html',routeUserProfileHandler)
+    .otherwise("pages/404.html");
+
+function routeHomeHandler(page){
+    uku.handleElement(page.page);
+}
+function routeLoginHandler(pages){
+    uku.handleElement(page.page);
+}
+function routeRegisterHandler(pages){
+    uku.handleElement(page.page);
+}
+function routeSettingsHandler(pages){
+    uku.handleElement(page.page);
+}
+function routeCreateArticleHandler(pages){
+    uku.handleElement(page.page);
+}
+function routeEditArticleHandler(pages,params){
+    uku.handleElement(page.page);
+}
+function reouteViewArticleHandler(pages,params){
+    uku.handleElement(page.page);
+}
+
+function routeUserProfileHandler(page, username){
+    uku.handleElement(page.page);
+    if(username){
+        console.log(username);
+    }
+}

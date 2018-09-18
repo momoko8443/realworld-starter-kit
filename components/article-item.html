@@ -4,7 +4,7 @@
             <div class="article-meta">
                 <a href="profile.html"><img uku-src="cc.article.author.image" /></a>
                 <div class="info">
-                    <a href="#/profile/u123" class="author" uku-text="cc.article.author.username"></a>
+                    <a uku-href="cc.getAuthorProfileHref()" class="author" uku-text="cc.article.author.username"></a>
                     <span class="date" uku-text="cc.article.createdAt"></span>
                 </div>
                 <button class="btn btn-outline-primary btn-sm pull-xs-right">
@@ -19,15 +19,18 @@
         </div>
     </template>
     <script>
-        this.getArtileDetailHref = function(){
-            return '#/article/'+this.article.slug;
-        }
-        Object.defineProperty(this,'articleItem',{
-            set: function(value){
-                if(value){
+        this.getAuthorProfileHref = function() {
+            return '#/profile/' + this.article.author.username;
+        };
+        this.getArtileDetailHref = function() {
+            return '#/article/' + this.article.slug;
+        };
+        Object.defineProperty(this, 'articleItem', {
+            set: function(value) {
+                if (value) {
                     this.article = value;
                 }
             }
-        })
+        });
     </script>
 </uku-component>
