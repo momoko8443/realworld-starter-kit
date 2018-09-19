@@ -10,11 +10,10 @@
 
             <div class="container page">
                 <div class="row">
-
-                    <div class="col-md-9">
+                    <div class="col-md-9" style="width:100%">
                         <div class="feed-toggle">
                             <ul class="nav nav-pills outline-active">
-                                <li class="nav-item">
+                                <li class="nav-item" uku-render="cc.isLogin">
                                     <a class="nav-link disabled" href="">Your Feed</a>
                                 </li>
                                 <li class="nav-item">
@@ -37,8 +36,12 @@
         var self = this;
         this.article = [];
         this.tags = [];
-        
-        this._initialized = function(){
+        this.isLogin = false;
+
+        this.init = function(){
+            if(window.user){
+                this.isLogin = true;
+            }
             api.articlesAPI.query('',{limit:10,offset:0}).then(function(result){
                 self.articles = result.data.articles;
                 uku.refresh();

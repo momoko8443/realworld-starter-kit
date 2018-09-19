@@ -1,0 +1,25 @@
+<uku-component>
+    <template>
+        <form class="card comment-form">
+            <div class="card-block">
+                <textarea class="form-control" placeholder="Write a comment..." rows="3"></textarea>
+            </div>
+            <div class="card-footer">
+                <img uku-src="cc.user.image" class="comment-author-img" />
+                <button class="btn btn-sm btn-primary">
+                    Post Comment
+                </button>
+            </div>
+        </form>
+    </template>
+    <script>
+        this.user = {};
+        Object.defineProperty(this, 'currentUser', {
+            set: function(value){
+                if(value){
+                    this.user = currentUser;
+                }
+            }
+        })
+    </script>
+</uku-component>

@@ -3,26 +3,28 @@ import * as UkuRouter from 'uku-routejs';
 
 var Ukulelejs = Ukulele.Ukulele;
 var uku = new Ukulelejs();
+uku.registerController('appCtrl', new ApplicationController(uku));
 uku.registerComponent('my-footer','./components/footer.html');
 uku.registerComponent('my-navigator', './components/navigator.html');
 uku.registerComponent('home-view', './components/home-view.html');
 uku.registerComponent('tags-view', './components/tags-view.html');
-uku.registerComponent('article-item', './components/article-item.html');
+uku.registerComponent('article-item', './components/article/article-item.html');
 uku.registerComponent('login-form', './components/login-form.html');
 uku.registerComponent('register-form', './components/register-form.html');
+uku.registerComponent('article-detail', './components/article/article-detail.html');
+uku.registerComponent('article-banner', './components/article/article-banner.html');
+uku.registerComponent('comment-form', './components/comment/comment-form.html');
+uku.registerComponent('comment-item', './components/comment/comment-item.html');
 uku.init();
 
 uku.addListener(Ukulelejs.INITIALIZED, (e)=> {
     route.work();
-    // route.onRouteChange = function(page){
-    //     uku.handleElement(page.page);
-    // }
 });
 
 uku.addListener(Ukulelejs.HANDLE_ELEMENT_COMPLETED, (e)=> {
     console.log(e);
 });
-
+var loginUser;
 var route = new UkuRouter.UkuRouter('viewContainer')
     .default('#/', './pages/home.html', routeHomeHandler)
     .when('#/login', './pages/login.html', routeLoginHandler)
@@ -30,31 +32,45 @@ var route = new UkuRouter.UkuRouter('viewContainer')
     .when('#/settings', './pages/settings.html', routeSettingsHandler)
     .when('#/editor', './pages/edit_article.html', routeCreateArticleHandler)
     .when('#/editor/:articleId', './pages/edit_article.html', routeEditArticleHandler)
-    .when('#/article/:articleId', './pages/view_article.html', reouteViewArticleHandler)
+    .when('#/article/:articleId', './pages/view_article.html', reouteArticleDetailHandler)
     .when('#/profile/:username', './pages/profile.html' , routeUserProfileHandler)
     .when('#/profile/:username/favorites', './pages/profile.html',routeUserProfileHandler)
     .otherwise("pages/404.html");
 
+function ApplicationController(uku){
+    this.onLoginSuccess = function(e){
+        window.user = e.data;
+        route.goto('#/');
+    };
+}
+
 function routeHomeHandler(page){
+    uku.handleElement(page.page, function(){
+        var homeView = uku.getComponentController('homeView');;
+        homeView.init();
+    });
+}
+function routeLoginHandler(page){
     uku.handleElement(page.page);
 }
-function routeLoginHandler(pages){
+function routeRegisterHandler(page){
     uku.handleElement(page.page);
 }
-function routeRegisterHandler(pages){
+function routeSettingsHandler(page){
     uku.handleElement(page.page);
 }
-function routeSettingsHandler(pages){
+function routeCreateArticleHandler(page){
     uku.handleElement(page.page);
 }
-function routeCreateArticleHandler(pages){
+function routeEditArticleHandler(page,params){
     uku.handleElement(page.page);
 }
-function routeEditArticleHandler(pages,params){
-    uku.handleElement(page.page);
-}
-function reouteViewArticleHandler(pages,params){
-    uku.handleElement(page.page);
+function reouteArticleDetailHandler(page,params){
+    var articleId = params[0];
+    uku.handleElement(page.page, function(){
+        var articleDetail = uku.getComponentController('articleDetail');;
+        articleDetail.init(articleId);
+    });
 }
 
 function routeUserProfileHandler(page, username){

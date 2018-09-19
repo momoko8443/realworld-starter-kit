@@ -29,11 +29,17 @@
         var api = ConduitAPIs;
         this.email = '';
         this.password = '';
+        this.invalid = false;
+        var self = this;
         this.login = function(){
+            self.invalid = false;
             api.authAPI.login({'email':this.email, 'password':this.password})
                 .then(function(result){
-                    console.log(result);
+                    self.fire('loginsuccess',result.user);
                 })
+                .catch(function(err){
+                    self.invalid = true;
+                });
         };
     </script>
 </uku-component>

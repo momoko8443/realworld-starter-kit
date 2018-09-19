@@ -1,0 +1,73 @@
+<uku-component>
+    <template>
+        <div class="article-page">
+
+            <article-banner uku-article="cc.article"></article-banner>
+
+            <div class="container page">
+
+                <div class="row article-content">
+                    <div class="col-md-12">
+                        <p uku-text="cc.article.description">
+                        </p>
+                        <h2 id="introducing-ionic">Introducing RealWorld.</h2>
+                        <p uku-text="cc.article.body"></p>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="article-actions">
+                    <div class="article-meta">
+                        <a href="profile.html"><img uku-src="cc.article.author.image" /></a>
+                        <div class="info">
+                            <a href="" class="author" uku-text="cc.article.author.username"></a>
+                            <span class="date" uku-text="cc.article.author.createdAt"></span>
+                        </div>
+
+                        <button class="btn btn-sm btn-outline-secondary">
+                            <i class="ion-plus-round"></i>
+                            <span>{{' Follow ' + cc.article.author.username}}</span>
+                        </button>
+                        &nbsp;
+                        <button class="btn btn-sm btn-outline-primary">
+                            <i class="ion-heart"></i>
+                            &nbsp;
+                            Favorite Post <span class="counter">{{'('+ cc.article.favoritesCount +')'}}</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xs-12 col-md-8 offset-md-2">
+
+                        <comment-form></comment-form>
+
+                        <comment-item uku-repeat="comment in cc.comments" uku-comment="comment"></comment-item>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </template>
+    <script>
+        var api = ConduitAPIs;
+        this.article = {};
+        this.comments = [];
+        var self = this;
+        this.init = function(articleId){
+            api.articlesAPI.get(articleId).then(function(result){
+                self.article = result.data.article;
+                uku.refresh();
+            });
+
+            api.commentsAPI.get(articleId).then(function(result){
+                self.comments = result.data.comments;
+                uku.refresh();
+            })
+        };
+    </script>
+</uku-component>

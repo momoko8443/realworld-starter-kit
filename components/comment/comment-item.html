@@ -1,0 +1,31 @@
+<uku-component>
+    <template>
+        <div class="card">
+            <div class="card-block">
+                <p class="card-text" uku-text="cc.commentItem.body"></p>
+            </div>
+            <div class="card-footer">
+                <a href="" class="comment-author">
+                    <img uku-src="cc.commentItem.author.image" class="comment-author-img" />
+                </a>
+                &nbsp;
+                <a href="" class="comment-author" uku-text="cc.commentItem.author.username"></a>
+                <span class="date-posted" uku-text="cc.commentItem.createdAt"></span>
+                <span class="mod-options">
+                    <i class="ion-edit"></i>
+                    <i class="ion-trash-a"></i>
+                </span>
+            </div>
+        </div>
+    </template>
+    <script>
+        var commentItem = {};
+        Object.defineProperty(this, 'comment', {
+            set: function(value){
+                if(value){
+                    this.commentItem = value;
+                }
+            }
+        });
+    </script>
+</uku-component>

@@ -1,0 +1,39 @@
+<uku-component>
+    <template>
+        <div class="banner">
+            <div class="container">
+                <h1 uku-text="cc.articleDetail.title"></h1>
+                <div class="article-meta">
+                    <a href=""><img uku-src="cc.articleDetail.author.image" /></a>
+                    <div class="info">
+                        <a href="" class="author" uku-text="cc.articleDetail.author.username"></a>
+                        <span class="date" uku-text="cc.articleDetail.updatedAt"></span>
+                    </div>
+                    <button class="btn btn-sm btn-outline-secondary">
+                        <i class="ion-plus-round"></i>
+                        &nbsp;
+                        <span>{{"Follow " + cc.articleDetail.author.username}}</span>
+                        <span class="counter">{{"(" + cc.articleDetail. + ")"}}</span>
+                    </button>
+                    &nbsp;&nbsp;
+                    <button class="btn btn-sm btn-outline-primary">
+                        <i class="ion-heart"></i>
+                        &nbsp;
+                        Favorite Post <span class="counter">(29)</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </template>
+    <script>
+        this.articleDetail = {};
+        Object.defineProperty(this, 'article', {
+            set: function(value){
+                if(value){
+                    this.articleDetail = value;
+                }
+            }
+        })
+    </script>
+</uku-component>
