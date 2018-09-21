@@ -38,8 +38,10 @@ var route = new UkuRouter.UkuRouter('viewContainer')
     .otherwise("pages/404.html");
 
 function ApplicationController(uku){
+    let self = this;
+    this.islogin = false;
     this.onLoginSuccess = function(e){
-        window.user = e.data;
+        self.islogin = true;
         route.goto('#/');
     };
 }
