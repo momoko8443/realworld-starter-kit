@@ -5,7 +5,7 @@
                 <a href="profile.html"><img uku-src="cc.article.author.image" /></a>
                 <div class="info">
                     <a uku-href="cc.getAuthorProfileHref()" class="author" uku-text="cc.article.author.username"></a>
-                    <span class="date" uku-text="cc.article.createdAt"></span>
+                    <span class="date" uku-text="cc.getCreateDateLabel(cc.article.createdAt)"></span>
                 </div>
                 <button class="btn btn-outline-primary btn-sm pull-xs-right">
                     <i class="ion-heart"></i> <span uku-text="cc.article.favoritesCount"></span>
@@ -15,10 +15,15 @@
                 <h1 uku-text="cc.article.title"></h1>
                 <p uku-text="cc.article.body"></p>
                 <span>Read more...</span>
+                <tag-list uku-tag-list="cc.article.tagList"></tag-list>
             </a>
         </div>
     </template>
     <script>
+        var format = Vendors.dateFns.format;
+        this.getCreateDateLabel = function(dateString){
+            return format(new Date(dateString), 'MMMM D, YYYY');
+        }
         this.getAuthorProfileHref = function() {
             return '#/profile/' + this.article.author.username;
         };

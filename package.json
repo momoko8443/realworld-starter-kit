@@ -5,6 +5,7 @@
   "main": "entry.js",
   "dependencies": {
     "axios": "^0.18.0",
+    "date-fns": "^1.29.0",
     "uku-routejs": "^1.1.1",
     "ukulelejs": "^1.4.2"
   },

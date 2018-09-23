@@ -22,12 +22,23 @@ module.exports = [
     },
     {
         output:{
-            
+
             filename: 'service.js',
             path: path.resolve(__dirname, 'dist'),
             libraryTarget: 'umd'
         },
         entry: './src/api.service.js',
+        devtool: 'source-map',
+        mode: 'development'
+    },
+    {
+        output:{
+
+            filename: 'vendor.js',
+            path: path.resolve(__dirname, 'dist'),
+            libraryTarget: 'umd'
+        },
+        entry: './src/vendor.js',
         devtool: 'source-map',
         mode: 'development'
     }

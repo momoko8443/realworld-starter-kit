@@ -9,6 +9,7 @@ uku.registerComponent('my-navigator', './components/navigator.html');
 uku.registerComponent('home-view', './components/home-view.html');
 uku.registerComponent('tags-view', './components/tags-view.html');
 uku.registerComponent('article-item', './components/article/article-item.html');
+uku.registerComponent('tag-list', './components/article/tag-list.html');
 uku.registerComponent('login-form', './components/login-form.html');
 uku.registerComponent('register-form', './components/register-form.html');
 uku.registerComponent('article-detail', './components/article/article-detail.html');
@@ -39,9 +40,9 @@ var route = new UkuRouter.UkuRouter('viewContainer')
 
 function ApplicationController(uku){
     let self = this;
-    this.islogin = false;
+    this.loginState = 'notlogin';
     this.onLoginSuccess = function(e){
-        self.islogin = true;
+        self.loginState = 'islogin';
         route.goto('#/');
     };
 }

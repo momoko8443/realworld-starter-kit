@@ -1,0 +1,16 @@
+<uku-component>
+    <template>
+        <ul class="tag-list">
+          <li class="tag-default tag-pill tag-outline" uku-repeat="tag in cc.tags" uku-text="tag"></li>
+        </ul>
+    </template>
+    <script>
+        Object.defineProperty(this,'tagList',{
+            set:function(value){
+                if(value){
+                    this.tags = value;
+                }
+            }
+        })
+    </script>
+</uku-component>

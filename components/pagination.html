@@ -1,0 +1,16 @@
+<uku-component>
+    <template>
+        <nav>
+            <ul class="pagination">
+                <li class="page-item active" ng-class="{active: pageNumber === $ctrl.currentPage }"
+                    ng-repeat="pageNumber in $ctrl.pageRange($ctrl.totalPages)"
+                    ng-click="$ctrl.changePage(pageNumber)">
+                    <a class="page-link ng-binding" href="">1</a>
+                </li>
+            </ul>
+        </nav>
+    </template>
+    <script>
+        
+    </script>
+</uku-component>

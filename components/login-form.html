@@ -39,6 +39,7 @@
                 })
                 .catch(function(err){
                     self.invalid = true;
+                    uku.refresh(self._alias);
                 });
         };
     </script>
